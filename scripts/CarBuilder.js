@@ -1,5 +1,6 @@
 import { Paints } from "./Paints.js";
 import { Interiors } from "./Interiors.js";
+import { Technologies } from "./Technologies.js";
 
 export const CarBuilder = () => {
   return `
@@ -16,6 +17,7 @@ export const CarBuilder = () => {
             </section>
             <section class="choices__technologies options">
                 <h2>Technologies</h2>
+                ${Technologies()}
             </section>
             <section class="choices__wheels options">
                <h2>Wheels</h2>
