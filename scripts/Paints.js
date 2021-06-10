@@ -1,5 +1,14 @@
 import { getPaints } from "./data.js";
 
+document.addEventListener("click", (event) => {
+  if (event.target.name === "paint") {
+    let colorObj = paints.find(
+      (paint) => paint.id === parseInt(event.target.value)
+    );
+    window.alert(`You chose ${colorObj.color}`);
+  }
+});
+
 const paints = getPaints();
 
 export const Paints = () => {
