@@ -1,3 +1,5 @@
+import { Paints } from "./Paint.js";
+
 export const CarBuilder = () => {
   return `
       <h1>Car Builder</h1>
@@ -5,6 +7,7 @@ export const CarBuilder = () => {
         <article class="choices">
             <section class="choices__paints options">
                 <h2>Paints</h2>
+                ${Paints()}
             </section>
             <section class="choices__interiors options">
                 <h2>Sizes</h2>
