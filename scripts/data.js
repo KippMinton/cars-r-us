@@ -77,12 +77,12 @@ const database = {
       price: 850,
     },
     {
-      id: 1,
+      id: 3,
       type: '18" spoke chrome',
       price: 1000,
     },
     {
-      id: 1,
+      id: 4,
       type: '18" spoke black',
       price: 1000,
     },
