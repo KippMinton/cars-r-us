@@ -87,11 +87,16 @@ const database = {
       price: 1000,
     },
   ],
+  orderBuilder : {}
 };
 
-const orderState = {};
 
 export const getPaints = () => [...database.paint];
 export const getInteriors = () => [...database.interior];
 export const getTechnologies = () => [...database.technology];
 export const getWheels = () => [...database.wheels];
+
+export const setPaint = (id) => database.orderBuilder.paintId = id;
+export const setInterior = (id) => database.orderBuilder.interiorId = id;
+export const setTechnology = (id) => database.orderBuilder.technologyId = id;
+export const setWheels = (id) => database.orderBuilder.wheelId = id;
