@@ -1,11 +1,8 @@
-import { getTechnologies } from "./data.js";
+import { getTechnologies, setTechnology } from "./data.js";
 
 document.addEventListener("click", (event) => {
   if (event.target.name === "tech") {
-    let techObj = technologies.find(
-      (tech) => tech.id === parseInt(event.target.value)
-    );
-    window.alert(`You chose the ${techObj.package}.`);
+    setTechnology(parseInt(event.target.value));
   }
 });
 
