@@ -13,7 +13,11 @@ export const Technologies = () => {
 
   for (const tech of technologies) {
     html += `<li>
-      <input type="radio" name="tech" value="${tech.id}"/> ${tech.package}
+      <input type="radio" name="tech" value="${tech.id}"/> ${tech.package} ${tech.price.toLocaleString(
+           "en-US", {
+              style: "currency",
+              currency: "USD"
+   })}
       </li>`;
   }
 

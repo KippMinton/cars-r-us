@@ -13,7 +13,11 @@ export const Interiors = () => {
 
   for (const interior of interiors) {
     html += `<li>
-         <input type="radio" name="interior" value="${interior.id}" /> ${interior.color}
+         <input type="radio" name="interior" value="${interior.id}" /> ${interior.color} ${interior.price.toLocaleString(
+           "en-US", {
+              style: "currency",
+              currency: "USD"
+   })}
       </li>`;
   }
   html += "</ul>";
