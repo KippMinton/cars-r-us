@@ -1,5 +1,5 @@
 const database = {
-  paint: [
+  paints: [
     {
       id: 1,
       color: "silver",
@@ -8,95 +8,129 @@ const database = {
     {
       id: 2,
       color: "midnight blue",
-      price: 700,
+      price: 700
     },
     {
       id: 3,
       color: "firebrick red",
-      price: 750,
+      price: 750
     },
     {
       id: 4,
       color: "spring green",
-      price: 700,
+      price: 700
     },
   ],
-  interior: [
+  interiors: [
     {
       id: 1,
       color: "beige fabric",
-      price: 1000,
+      price: 1000
     },
     {
       id: 2,
       color: "charcoal fabric",
-      price: 1000,
+      price: 1000
     },
     {
       id: 3,
       color: "white leather",
-      price: 4000,
+      price: 4000
     },
     {
       id: 4,
       color: "black leather",
-      price: 3750,
+      price: 3750
     },
   ],
-  technology: [
+  technologies: [
     {
       id: 1,
       package: "base package",
-      price: 0,
+      price: 100
     },
     {
       id: 2,
       package: "navigation package",
-      price: 800,
+      price: 800
     },
     {
       id: 3,
       package: "visibility package",
-      price: 1400,
+      price: 1400
     },
     {
       id: 4,
       package: "ultra package",
-      price: 2100,
-    },
+      price: 2100
+    }
   ],
   wheels: [
     {
       id: 1,
       type: '17" radial chrome',
-      price: 850,
+      price: 850
     },
     {
       id: 2,
       type: '17"  radial black',
-      price: 850,
+      price: 850
     },
     {
       id: 3,
       type: '18" spoke chrome',
-      price: 1000,
+      price: 1000
     },
     {
       id: 4,
       type: '18" spoke black',
-      price: 1000,
+      price: 1000
     },
   ],
+  customOrders: [],
   orderBuilder : {}
 };
 
 
-export const getPaints = () => [...database.paint];
-export const getInteriors = () => [...database.interior];
-export const getTechnologies = () => [...database.technology];
-export const getWheels = () => [...database.wheels];
+export const getPaints = () => database.paints.map(paint => ({...paint}));
+export const getInteriors = () => database.interiors.map(interior => ({...interior}))
+export const getTechnologies = () => database.technologies.map(tech => ({...tech}))
+export const getWheels = () => database.wheels.map(wheel => ({...wheel}));
+export const getOrders = () => database.customOrders.map(order => ({...order}));
 
 export const setPaint = (id) => database.orderBuilder.paintId = id;
-export const setInterior = (id) => database.orderBuilder.interiorId = id;
-export const setTechnology = (id) => database.orderBuilder.technologyId = id;
-export const setWheels = (id) => database.orderBuilder.wheelId = id;
+
+export const setInterior = (id) => {
+  database.orderBuilder.interiorId = id;
+}
+export const setTechnology = (id) => {
+  database.orderBuilder.techId = id;
+}
+export const setWheels = (id) => {
+  database.orderBuilder.wheelId = id;
+}
+
+export const checkOrderState = () => {
+  return (
+    "paintId" in database.orderBuilder &&
+    "interiorId" in database.orderBuilder &&
+    "techId" in database.orderBuilder &&
+    "wheelId" in database.orderBuilder
+  )
+}
+
+export const addCustomOrder = () => {
+  const newOrder = {...database.orderBuilder}
+
+  const lastIndex = database.customOrders.length - 1
+  
+  newOrder.id = lastIndex >= 0 ? database.customOrders[lastIndex].id + 1 : 1
+
+  newOrder.timestamp = Date.now()
+
+  database.customOrders.push(newOrder)
+
+  database.orderBuilder = {}
+
+  document.dispatchEvent(new CustomEvent("stateChanged"))
+}

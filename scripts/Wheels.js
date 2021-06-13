@@ -13,7 +13,11 @@ export const Wheels = () => {
 
   for (const wheel of wheels) {
     html += `<li>
-      <input type="radio" name="wheels" value="${wheel.id}"/> ${wheel.type}
+      <input type="radio" name="wheels" value="${wheel.id}"/> ${wheel.type} ${wheel.price.toLocaleString(
+           "en-US", {
+              style: "currency",
+              currency: "USD"
+   })}
       </li>`;
   }
 

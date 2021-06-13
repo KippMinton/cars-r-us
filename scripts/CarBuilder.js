@@ -2,6 +2,21 @@ import { Paints } from "./Paints.js";
 import { Interiors } from "./Interiors.js";
 import { Technologies } from "./Technologies.js";
 import { Wheels } from "./Wheels.js";
+import { Orders } from "./Orders.js";
+import { addCustomOrder, checkOrderState } from "./data.js";
+
+document.addEventListener(
+    "click",
+    (event) => {
+      if (event.target.id === "orderButton") {
+        if ( checkOrderState() ) {
+          addCustomOrder()
+        } else {
+            window.alert("please select from all options before placing order.")
+        }
+      }
+    }
+)
 
 export const CarBuilder = () => {
   return `
@@ -32,6 +47,7 @@ export const CarBuilder = () => {
 
         <article class="customOrders">
             <h2>Custom Car Orders</h2>
+            ${Orders()}
         </article>
     `;
 };

@@ -13,7 +13,11 @@ export const Paints = () => {
 
   for (const paint of paints) {
     html += `<li>
-         <input type="radio" name="paint" value="${paint.id}"/> ${paint.color}
+         <input type="radio" name="paint" value="${paint.id}"/> ${paint.color} ${paint.price.toLocaleString(
+           "en-US", {
+              style: "currency",
+              currency: "USD"
+   })}
       </li>`;
   }
 
